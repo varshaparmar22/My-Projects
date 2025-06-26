@@ -69,7 +69,7 @@ def get_weather(city: str = "Ahmedabad"):
 
 weather_tool = Tool(
     name="CurrentWeather",
-    func=lambda query: get_weather(),  # could parse query for city if needed
+    func=get_weather,  # could parse query for city if needed
     description="Use this to fetch the current temperature in a city. Always call this for weather-related queries."
 )
 
