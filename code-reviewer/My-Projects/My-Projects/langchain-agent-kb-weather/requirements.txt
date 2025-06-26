@@ -1,0 +1,10 @@
+langchain==0.3.26
+langchain-core==0.3.66
+langchain-community==0.3.26
+langchain-text-splitters==0.0.1
+langchain-aws==0.2.26
+
+chromadb==0.4.24
+boto3==1.34.119
+requests==2.31.0
+python-dotenv
