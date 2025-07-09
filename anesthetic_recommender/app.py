@@ -13,24 +13,23 @@ from langchain_ollama import OllamaLLM
 # --- Configuration and Setup ---
 load_dotenv()
 
-# Check for Hugging Face API Token
-if not os.getenv("HUGGINGFACEHUB_API_TOKEN"):
-    st.error("Hugging Face API token not found! Please add it to your .env file.")
-    st.stop()
+# for paid account of huggingface - Check for Hugging Face API Token
+# if not os.getenv("HUGGINGFACEHUB_API_TOKEN"):
+#     st.error("Hugging Face API token not found! Please add it to your .env file.")
+#     st.stop()
 
 
 # Initialize the LLM from Hugging Face Hub
 try:
     llm = OllamaLLM(model="gemma3")
+    #### If you have paid account of HuggingFace then use this as in free account it will not work
+    # as all LLM are not accessible under free account #####
     # llm = HuggingFaceEndpoint( 
     #     repo_id="google/flan-t5-xl",
     #     temperature=0.7,
     #     max_new_tokens=1024
     # )
 
-    # print("Testing LLM directly...")
-    # print(llm.invoke("Hello, how are you?"))
-    # exit()
 except Exception as e:
     st.error(f"Failed to initialize the LLM. Please check your API token. Error: {e}")
     st.stop()
