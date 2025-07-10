@@ -6,11 +6,14 @@ st.set_page_config(page_title="ImageNet Sales Dashboard", layout="wide")
 st.title("📊 ImageNet Category Sales Dashboard")
 
 # Load CSS styling
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+def load_local_css(file_name):
+    if os.path.exists(file_name):
+        with open(file_name) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    else:
+        st.warning(f"⚠️ {file_name} not found!")
 
-local_css("style.css")
+load_local_css("style.css")
 # Load Data
 df = pd.read_csv("imagenet_sales.csv", parse_dates=["date"])
 
