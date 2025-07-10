@@ -1,0 +1,25 @@
+/* style.css */
+.main {
+    background-color: #f9f9fb;
+}
+h1, h2, h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #2c3e50;
+}
+.css-1aumxhk {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+}
+.stMetric {
+    background-color: #f0f2f6;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+button:not(:disabled), [role="button"]:not(:disabled) {
+    background-color: rgb(20, 220, 63);
+}   
+.st-cl {
+    fill: white;
+}

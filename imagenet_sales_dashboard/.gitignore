@@ -1,0 +1,28 @@
+
+---
+
+## 📄 `.gitignore`
+
+```gitignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints
+
+# Data files
+*.csv
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+
+# Streamlit cache
+.streamlit/
+
+# VSCode
+.vscode/
