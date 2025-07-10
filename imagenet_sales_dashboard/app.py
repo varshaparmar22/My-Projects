@@ -5,10 +5,12 @@ import plotly.express as px
 st.set_page_config(page_title="ImageNet Sales Dashboard", layout="wide")
 st.title("📊 ImageNet Category Sales Dashboard")
 
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# Load CSS styling
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-
+local_css("style.css")
 # Load Data
 df = pd.read_csv("imagenet_sales.csv", parse_dates=["date"])
 
