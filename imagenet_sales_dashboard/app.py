@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
 st.set_page_config(page_title="ImageNet Sales Dashboard", layout="wide")
 st.title("📊 ImageNet Category Sales Dashboard")
