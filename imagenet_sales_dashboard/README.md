@@ -2,7 +2,7 @@
 
 This project is a **smart, interactive sales dashboard** built using **Streamlit** and **Python**, simulating sales performance for various categories inspired by the ImageNet dataset.
 
-![Demo](https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png)
+DEMO === https://my-projects-imagenet-sales-dashboard.streamlit.app/
 
 ---
 
@@ -14,7 +14,5 @@ This project is a **smart, interactive sales dashboard** built using **Streamlit
 - 🧠 Inspired by ImageNet categories
 - 🔎 View full filtered dataset
 
----
 
-## 📁 Project Structure
 
