@@ -15,5 +15,6 @@ Paste your Python code and let Claude review, debug, explain, or refactor it.
 ## 📦 Setup
 
 ```bash
+set env variables in .env file
 pip install -r requirements.txt
 streamlit run app.py
