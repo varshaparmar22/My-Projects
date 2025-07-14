@@ -1,7 +1,7 @@
 import requests
 
 headers = {
-    "Authorization": f"Bearer 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"
+    "Authorization": f"Bearer "
 }
 
 response = requests.post(
