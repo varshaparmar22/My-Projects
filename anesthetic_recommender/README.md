@@ -2,6 +2,8 @@
 
 This AI-powered application helps anesthetists find qualified and available substitutes for medical calls. It provides recommendations based on specialty and experience, and automates the initial outreach via email.
 
+## Engineered this project architecture using Windsurf to support advanced LLM features ##
+
 ## Features
 
 - **Intelligent Recommendations**: Uses a Large Language Model (LLM) to suggest the best-fit substitutes.
