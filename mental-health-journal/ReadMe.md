@@ -12,9 +12,4 @@ A privacy-friendly AI-powered journaling assistant that helps you reflect, summa
 - ❤️ Detect the emotional sentiment (Positive / Negative / Neutral)
 - 📅 View past summaries and track your emotional journey
 - 💾 All data saved locally in a `.csv` file
-- 🔒 Runs fully offline using **Ollama** + **LLaMA 3**
-
----
-
-## 📂 Project Structure
-
+- 🔒 Runs fully offline using **Ollama** + **GEMMA 3**
