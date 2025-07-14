@@ -5,3 +5,4 @@ langchain-huggingface
 python-dotenv
 SQLAlchemy
 twilio
+langchain_ollama
