@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+*.egg-info/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Local system files
+.DS_Store
+Thumbs.db
+
+# AWS credentials (never commit!)
+*.pem
+*.key
+aws_config/
+.aws/credentials
+.aws/config
+
+# Python settings
+*.env
+.env.*
+*.secret
+
+# Streamlit cache
+.streamlit/config.toml
+.streamlit/secrets.toml
+**/.streamlit/
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# ZIPs or generated artifacts
+*.zip
+
+# Test outputs or data dumps
+*.db
+*.sqlite
+*.json
+*.csv
+
+# Node modules (if any frontend in future)
+node_modules/
+
+# Terraform state files (if you add IaC later)
+*.tfstate
+*.tfstate.backup
+.terraform/
