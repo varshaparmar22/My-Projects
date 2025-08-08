@@ -1,10 +1,17 @@
 import requests
 import json
 from datetime import datetime, timezone
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
+
 
 # Airtable API details
-BASE_ID = "appsAu9EYADvRBlNR"
-AIRTABLE_TOKEN = "patldFrkz5SiZ5jCa.57590a65449d57b677f6b1d42899d77c4925dc54bf5b622a8f0c834c5d376ae5"  # Personal Access Token
+BASE_ID = os.getenv("BASE_ID")  # Found in Airtable API docs for your base
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_API_TOKEN")  # Personal Access Token
+
 
 TABLES = {
     "Applicants": f"https://api.airtable.com/v0/{BASE_ID}/Applicants",
@@ -148,12 +155,36 @@ def shortlist_leads():
             "Created At": datetime.now(timezone.utc).isoformat()
         }
 
-        # Insert into Shortlisted Leads
-        resp = requests.post(TABLES["Shortlisted Leads"], headers=HEADERS, json={"fields": lead_fields})
-        if resp.status_code == 200:
-            print(f"✅ Shortlisted Applicant {applicant_id}: {reason}")
+        # Check if Lead already exists
+        existing_leads = fetch_records(TABLES["Shortlisted Leads"])
+        existing_lead = next(
+            (lead for lead in existing_leads if lead["fields"].get("LeadId") == f"LEAD-{applicant_id}"),
+            None
+        )
+
+        if existing_lead:
+            # Update existing record
+            lead_id = existing_lead["id"]
+            update_resp = requests.patch(
+                f"{TABLES['Shortlisted Leads']}/{lead_id}",
+                headers=HEADERS,
+                json={"fields": lead_fields}
+            )
+            if update_resp.status_code == 200:
+                print(f"🔄 Updated Shortlisted Lead for Applicant {applicant_id}: {reason}")
+            else:
+                print(f"⚠️ Failed to update Lead for Applicant {applicant_id}: {update_resp.text}")
         else:
-            print(f"⚠️ Failed to insert Shortlisted Lead for Applicant {applicant_id}: {resp.text}")
+            # Insert new record
+            insert_resp = requests.post(
+                TABLES["Shortlisted Leads"],
+                headers=HEADERS,
+                json={"fields": lead_fields}
+            )
+            if insert_resp.status_code == 200:
+                print(f"✅ Shortlisted Applicant {applicant_id}: {reason}")
+            else:
+                print(f"⚠️ Failed to insert Lead for Applicant {applicant_id}: {insert_resp.text}")
 
 # -------------------------
 # Run

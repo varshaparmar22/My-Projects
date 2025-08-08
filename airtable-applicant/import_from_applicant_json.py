@@ -1,9 +1,16 @@
 import requests
 import json
+from dotenv import load_dotenv
+import os
+import gzip
+
+# Load environment variables
+load_dotenv()
+
 
 # Airtable API details
-BASE_ID = "appsAu9EYADvRBlNR"
-AIRTABLE_TOKEN = "patldFrkz5SiZ5jCa.57590a65449d57b677f6b1d42899d77c4925dc54bf5b622a8f0c834c5d376ae5"  # Personal Access Token
+BASE_ID = os.getenv("BASE_ID")  # Found in Airtable API docs for your base
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_API_TOKEN")  # Personal Access Token
 
 # API URLs for each table
 TABLES = {
@@ -97,15 +104,14 @@ def restore_from_applicants():
         existing_exp = fetch_records(TABLES["Work Experience"])
         for exp in existing_exp:
             if record_id in exp.get("fields", {}).get("Applicants", []):
-                requests.delete(f"{TABLES['Work Experience']}/{exp['id']}", headers=HEADERS)
-
-        for exp in merged_data.get("experience", []):
-            exp_fields = {
-                "Company": exp.get("company", ""),
-                "Title": exp.get("title", ""),
-                "Applicants": [record_id]
-            }
-            requests.post(TABLES["Work Experience"], headers=HEADERS, json={"fields": exp_fields})
+                requests.patch(f"{TABLES['Work Experience']}/{exp['id']}", headers=HEADERS)
+            # else:        
+            #     exp_fields = {
+            #         "Company": exp.get("company", ""),
+            #         "Title": exp.get("title", ""),
+            #         "Applicants": [record_id]
+            #     }
+            #     requests.post(TABLES["Work Experience"], headers=HEADERS, json={"fields": exp_fields})
 
         # -------------------------
         # 3. Salary Preferences

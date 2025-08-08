@@ -2,14 +2,15 @@ import os
 import requests
 import json
 import gzip
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Airtable API details
-base_id = "appsAu9EYADvRBlNR"  # Found in Airtable API docs for your base
-api_token = "patldFrkz5SiZ5jCa.57590a65449d57b677f6b1d42899d77c4925dc54bf5b622a8f0c834c5d376ae5"  # Personal Access Token
+BASE_ID = os.getenv("BASE_ID")  # Found in Airtable API docs for your base
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_API_TOKEN")  # Personal Access Token
 
-# Your credentials
-AIRTABLE_TOKEN = api_token
-BASE_ID = base_id
 
 # API URLs for each table
 TABLES = {
@@ -47,6 +48,7 @@ def fetch_records(url):
 
 def match_by_applicant_id(record, applicant_id):
     ids = record.get("fields", {}).get("Applicant ID (from Applicants)", [])
+    
     if not ids:
         return False
     # Convert both to string for comparison
@@ -64,7 +66,6 @@ def build_applicant_json(applicant_id):
     personal = next((p for p in personal_details if match_by_applicant_id(p, applicant_id)), {})
     experiences = [w for w in work_experience if match_by_applicant_id(w, applicant_id)]
     salary = next((s for s in salary_prefs if match_by_applicant_id(s, applicant_id)), {})
-
 
     # Build structured JSON
     data = {
@@ -93,7 +94,7 @@ def build_applicant_json(applicant_id):
 # -------------------------
 def save_compressed_json(data, filename):
     json_str = json.dumps(data, indent=2, ensure_ascii=False)
-    with gzip.open(filename, "wt", encoding="utf-8") as f:
+    with open(filename, "wt", encoding="utf-8") as f:
         f.write(json_str)
     print(f"Compressed JSON saved to {filename}")
 
